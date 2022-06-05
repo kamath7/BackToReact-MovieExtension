@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { MovieContext } from "./Context";
+import React, { useContext } from "react";
+import { MovieContext } from "../context/Context";
 import Movie from "./Movie";
 
 const MovieList = (props) => {

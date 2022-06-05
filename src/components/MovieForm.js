@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { MovieContext } from "./Context";
+import { MovieContext } from "../context/Context";
 import axios from "axios";
 const MovieForm = () => {
   const [movieName, setMovieName] = useState("");
@@ -17,7 +17,7 @@ const MovieForm = () => {
     let plot = "";
     axios
       .get(
-        `http://www.omdbapi.com/?apikey=d5fa370&t=${encodeURIComponent(
+        `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&t=${encodeURIComponent(
           movieName
         )}`
       )

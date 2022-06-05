@@ -1,12 +1,12 @@
-import { MovieProvider } from "./Context";
-import MovieForm from "./MovieForm";
-import MovieList from "./MovieList";
+import { MovieProvider } from "./context/Context";
+import MovieForm from "./components/MovieForm";
+import MovieList from "./components/MovieList";
 
 function App() {
   return (
     <MovieProvider>
       <div className="App">
-        <h1>Starting with an extension</h1>
+       <h3>Movie Helper</h3>
         <MovieForm />
         <MovieList />
       </div>
