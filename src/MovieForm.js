@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { MovieContext } from "./Context";
-
+import axios from "axios";
 const MovieForm = () => {
   const [movieName, setMovieName] = useState("");
   const [movies, setMovies] = useContext(MovieContext);
@@ -12,8 +12,23 @@ const MovieForm = () => {
         movies
       )} `
     );
-    setMovies([...movies, { movieName }]);
-    setMovieName("");
+
+    let imdbRating = "0";
+    let plot = "";
+    axios
+      .get(
+        `http://www.omdbapi.com/?apikey=d5fa370&t=${encodeURIComponent(
+          movieName
+        )}`
+      )
+      .then((res) => {
+        imdbRating = res.data.Ratings[0].Value.split("/")[0]
+          ? res.data.Ratings[0].Value.split("/")[0]
+          : "NA";
+        plot = res.data.Plot ? res.data.Plot : "LIPSUM";
+        setMovies([...movies, { movieName, imdbRating, plot }]);
+        setMovieName("");
+      });
   };
   return (
     <form onSubmit={formSubmit}>
